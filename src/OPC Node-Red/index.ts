@@ -1,5 +1,10 @@
 const opcua = require("node-opcua");
+import * as dotenv from 'dotenv';
+import * as path from 'path';
 
+dotenv.config({
+    path: path.resolve(__dirname, '../../.env'),
+});
 export default class Conectar {
 
     async connectToOpcuaServer(endpointUrl: string, timeout: number) {
@@ -34,7 +39,8 @@ export default class Conectar {
 
     async init(): Promise<boolean> {
         try {
-            const endpointUrl: string = "opc.tcp://10.243.74.204:5000";
+            console.log(process.env.ENDPOINT);
+            const endpointUrl: string = process.env.ENDPOINT || ''; // "opc.tcp://endpoint:port"
             const timeout: number = 5000;
             const res: boolean = await this.connectToOpcuaServer(endpointUrl, timeout);
             return res;

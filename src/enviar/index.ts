@@ -1,22 +1,28 @@
 import nodemailer, { Transporter } from 'nodemailer';
+import * as path from 'path';
 import dotenv from 'dotenv';
 import Conectar from '../OPC Node-Red/index';
 
-dotenv.config();
+// Defining the dotenv path.
+dotenv.config({
+    path: path.resolve(__dirname, '../../.env'),
+});
 
+// Email / Transport configuration.
 const transporter: Transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'botmetrisptr@gmail.com',
-        pass: 'kckn phbd cjqj vumo'
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     }
 });
 
 const sendEmail = async () => {
 
+    // Email options.
     const mailOptions = {
-        from: 'botmetrisptr@gmail.com',
-        to: 'rafael.carneiro@andritz.com',
+        from: process.env.EMAIL_USER,
+        to: process.env.EMAIL_TO,
         subject: `STATUS OPCUA / NODE-RED -- ATENÇÃO!`,
         text: `SERVIDOR OPCUA ESTÁ FORA DO AR!
                VERIFICAR A CONDIÇÃO DO NODE-RED.`
