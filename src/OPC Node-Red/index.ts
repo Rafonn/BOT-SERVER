@@ -40,7 +40,6 @@ export default class Conectar {
 
     async init(): Promise<boolean> {
         try {
-            console.log(process.env.ENDPOINT);
             const endpointUrl: string = process.env.ENDPOINT || ''; // "opc.tcp://endpoint:port"
             const timeout: number = 5000;
             const res: boolean = await this.connectToOpcuaServer(endpointUrl, timeout);
