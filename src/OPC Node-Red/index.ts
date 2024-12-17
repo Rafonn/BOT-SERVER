@@ -5,6 +5,7 @@ import * as path from 'path';
 dotenv.config({
     path: path.resolve(__dirname, '../../.env'),
 });
+
 export default class Conectar {
 
     async connectToOpcuaServer(endpointUrl: string, timeout: number) {
