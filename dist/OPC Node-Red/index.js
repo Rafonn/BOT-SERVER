@@ -68,7 +68,6 @@ class Conectar {
     init() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log(process.env.ENDPOINT);
                 const endpointUrl = process.env.ENDPOINT || ''; // "opc.tcp://endpoint:port"
                 const timeout = 5000;
                 const res = yield this.connectToOpcuaServer(endpointUrl, timeout);
